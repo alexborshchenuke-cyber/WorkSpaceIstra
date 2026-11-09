@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Конференц-залы WorkSpace для деловых событий: от совета директоров до конференции на 180 гостей. Техника, рассадка и поддержка организатора.">
+  <title>Конференц-залы — WorkSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header>
+    <nav class="navbar navbar-expand-lg bg-white fixed-top" aria-label="Основная навигация">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Work<span class="text-primary">Space</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="rooms.html">Аудитории</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="conferences.html">Конференц-залы</a></li>
+            <li class="nav-item"><a class="nav-link" href="offices.html">Офисы</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#tariffs">Тарифы</a></li>
+            <li class="nav-item ms-lg-2">
+              <a class="btn btn-outline-primary" href="profile.html" id="nav-profile-link">Профиль</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero page-hero--conference" aria-labelledby="conferences-title">
+      <div class="container py-5">
+        <div class="col-12 col-lg-9">
+          <p class="section-kicker mb-2">События под ключ</p>
+          <h1 class="display-4 fw-bold mb-3" id="conferences-title">Конференц-залы, где идеи звучат громче</h1>
+          <p class="lead mb-4">Проведите совет директоров, форум или масштабную презентацию. Подготовим рассадку, технику и кофе-брейки — вам останется только встретить гостей.</p>
+          <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Возможности площадки">
+            <span class="hero-stat"><strong>до 180</strong><span>участников</span></span>
+            <span class="hero-stat"><strong>3 формата</strong><span>рассадки</span></span>
+            <span class="hero-stat"><strong>4K + звук</strong><span>техника включена</span></span>
+          </div>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-primary btn-lg" href="#conference-list">Выбрать зал</a>
+            <a class="btn btn-outline-light btn-lg" href="tel:+74951234567">Обсудить событие</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5" id="conference-list" aria-labelledby="conference-list-title">
+      <div class="container py-4">
+        <p class="section-kicker mb-2">Выберите масштаб</p>
+        <h2 class="section-title mb-2" id="conference-list-title">Пространство для любого события</h2>
+        <p class="section-subtitle mb-5">В стоимость входят базовая техника, Wi-Fi, вода и помощь координатора площадки.</p>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <article class="card space-card h-100">
+              <img src="images/conference-1.jpg" class="card-img-top" alt="Светлый конференц-зал Совет с длинным столом и панорамными окнами" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h4 mb-0">Совет</h3>
+                  <span class="badge text-bg-light">До 16 гостей</span>
+                </div>
+                <p class="text-muted">Представительный зал для совета директоров, переговоров и закрытых презентаций.</p>
+                <ul class="space-features mb-4">
+                  <li>60 м²</li>
+                  <li>Экран 98″</li>
+                  <li>ВКС и спикерфоны</li>
+                  <li>Звукоизоляция</li>
+                </ul>
+                <div class="mt-auto">
+                  <p class="mb-3"><strong class="price">2 500 ₽</strong><span class="text-muted"> / час</span></p>
+                  <a class="btn btn-outline-primary w-100" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Запрос%20на%20конференц-зал%20«Совет»">Запросить бронь</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <article class="card space-card h-100">
+              <img src="images/conference-2.jpg" class="card-img-top" alt="Большой зал Форум со сценой, экранами и театральной рассадкой" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h4 mb-0">Форум</h3>
+                  <span class="badge text-bg-light">До 80 гостей</span>
+                </div>
+                <p class="text-muted">Зал со сценой для конференций, образовательных программ и презентаций продуктов.</p>
+                <ul class="space-features mb-4">
+                  <li>140 м²</li>
+                  <li>2 экрана 4K</li>
+                  <li>4 микрофона</li>
+                  <li>Запись трансляции</li>
+                </ul>
+                <div class="mt-auto">
+                  <p class="mb-3"><strong class="price">6 500 ₽</strong><span class="text-muted"> / час</span></p>
+                  <a class="btn btn-primary w-100" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Запрос%20на%20конференц-зал%20«Форум»">Запросить бронь</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <article class="card space-card h-100">
+              <img src="images/conference-3.jpg" class="card-img-top" alt="Просторный зал Арена с большой сценой и экраном для конференции" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h4 mb-0">Арена</h3>
+                  <span class="badge text-bg-light">До 180 гостей</span>
+                </div>
+                <p class="text-muted">Максимальный простор для городского форума, демо-дня или ежегодного собрания команды.</p>
+                <ul class="space-features mb-4">
+                  <li>260 м²</li>
+                  <li>LED-экран 6 м</li>
+                  <li>Свет и звук</li>
+                  <li>Гримёрная спикера</li>
+                </ul>
+                <div class="mt-auto">
+                  <p class="mb-3"><strong class="price">12 000 ₽</strong><span class="text-muted"> / час</span></p>
+                  <a class="btn btn-outline-primary w-100" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Запрос%20на%20конференц-зал%20«Арена»">Запросить бронь</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt py-5" aria-labelledby="event-service-title">
+      <div class="container py-4">
+        <h2 class="section-title text-center mb-2" id="event-service-title">Не просто аренда, а событие без суеты</h2>
+        <p class="section-subtitle text-center mx-auto mb-5">Координатор соберёт все детали и останется на связи в день мероприятия.</p>
+        <div class="row g-4 text-center">
+          <div class="col-12 col-md-4">
+            <span class="feature-icon fw-bold" aria-hidden="true">01</span>
+            <h3 class="h5">Подготовим площадку</h3>
+            <p class="text-muted mb-0">Рассадка театром, классом или островами, брендирование и навигация для гостей.</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <span class="feature-icon fw-bold" aria-hidden="true">02</span>
+            <h3 class="h5">Настроим технику</h3>
+            <p class="text-muted mb-0">Проверим презентации, микрофоны и трансляцию до прихода первых участников.</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <span class="feature-icon fw-bold" aria-hidden="true">03</span>
+            <h3 class="h5">Позаботимся о гостях</h3>
+            <p class="text-muted mb-0">Организуем регистрацию, кофе-брейки, ланч и лёгкий нетворкинг после программы.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container py-3">
+        <div class="business-cta d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-4">
+          <div>
+            <h2 class="section-title mb-2">Расскажите о вашем событии</h2>
+            <p class="mb-0">Предложим зал, рассадку и смету. Для небольшой встречи можно сразу забронировать переговорку онлайн.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-2 flex-shrink-0">
+            <a class="btn btn-light btn-lg" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Организация%20события%20в%20WorkSpace">Получить предложение</a>
+            <a class="btn btn-outline-light btn-lg" href="rooms.html">Малая переговорка</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">WorkSpace</p>
+          <p class="small">Коворкинг и переговорки в центре города. Работаем ежедневно с 8:00 до 22:00, резидентам — 24/7.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">Навигация</p>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="index.html">Главная</a></li>
+            <li class="mb-1"><a href="rooms.html">Аудитории</a></li>
+            <li class="mb-1"><a href="conferences.html">Конференц-залы</a></li>
+            <li class="mb-1"><a href="offices.html">Офисы для бизнеса</a></li>
+            <li class="mb-1"><a href="index.html#tariffs">Тарифы</a></li>
+            <li class="mb-1"><a href="index.html#faq">Частые вопросы</a></li>
+            <li class="mb-1"><a href="profile.html">Профиль</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">Контакты</p>
+          <ul class="list-unstyled small">
+            <li class="mb-1">ул. Примерная, 12, 3 этаж</li>
+            <li class="mb-1"><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li class="mb-1"><a href="#inquiryModal" data-inquiry-open data-inquiry-topic="">hello@workspace.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <p class="small mb-0">© <span id="current-year">2026</span> WorkSpace. Учебный проект, все данные демонстрационные.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" aria-live="polite"></div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/inquiry.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Аренда готовых офисов для бизнеса в WorkSpace: отдельные пространства для команд от 8 до 45 сотрудников с мебелью, сервисом и доступом 24/7.">
+  <title>Офисы для бизнеса — WorkSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header>
+    <nav class="navbar navbar-expand-lg bg-white fixed-top" aria-label="Основная навигация">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Work<span class="text-primary">Space</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="rooms.html">Аудитории</a></li>
+            <li class="nav-item"><a class="nav-link" href="conferences.html">Конференц-залы</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="offices.html">Офисы</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#tariffs">Тарифы</a></li>
+            <li class="nav-item ms-lg-2">
+              <a class="btn btn-outline-primary" href="profile.html" id="nav-profile-link">Профиль</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero page-hero--offices" aria-labelledby="offices-title">
+      <div class="container py-5">
+        <div class="col-12 col-lg-9">
+          <p class="section-kicker mb-2">WorkSpace для бизнеса</p>
+          <h1 class="display-4 fw-bold mb-3" id="offices-title">Ваш офис. Наша забота обо всём остальном</h1>
+          <p class="lead mb-4">Готовые пространства для компаний от 8 до 45 сотрудников. Заезжайте с ноутбуками: мебель, интернет, уборка, переговорки и поддержка уже включены.</p>
+          <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Преимущества аренды">
+            <span class="hero-stat"><strong>24/7</strong><span>доступ в офис</span></span>
+            <span class="hero-stat"><strong>от 1 месяца</strong><span>гибкий договор</span></span>
+            <span class="hero-stat"><strong>1 счёт</strong><span>за все сервисы</span></span>
+          </div>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-primary btn-lg" href="#office-list">Выбрать офис</a>
+            <a class="btn btn-outline-light btn-lg" href="index.html#tariffs">Сравнить тарифы</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5" id="office-list" aria-labelledby="office-list-title">
+      <div class="container py-4">
+        <p class="section-kicker mb-2">Офисы под ваш масштаб</p>
+        <h2 class="section-title mb-2" id="office-list-title">Пространство, в котором хочется расти</h2>
+        <p class="section-subtitle mb-5">Каждый офис приватный, полностью меблирован и готов к переезду команды.</p>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <article class="card space-card h-100">
+              <img src="images/office-1.jpg" class="card-img-top" alt="Приватный офис S с панорамными окнами и рабочим столом" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h4 mb-0">Офис S</h3>
+                  <span class="badge text-bg-light">8–10 мест</span>
+                </div>
+                <p class="text-muted">Светлый кабинет для продуктовой команды или представительства компании.</p>
+                <ul class="space-features mb-4">
+                  <li>45 м²</li>
+                  <li>Переговорная</li>
+                  <li>20 часов встреч</li>
+                  <li>Своя кухня</li>
+                </ul>
+                <div class="mt-auto">
+                  <p class="mb-3"><strong class="price">от 89 000 ₽</strong><span class="text-muted"> / месяц</span></p>
+                  <a class="btn btn-outline-primary w-100" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Аренда%20офиса%20S%20для%20компании">Запросить просмотр</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <article class="card space-card h-100">
+              <img src="images/office-2.jpg" class="card-img-top" alt="Офис M с приватными стеклянными кабинетами и лаунж-зоной" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h4 mb-0">Офис M</h3>
+                  <span class="badge text-bg-light">16–20 мест</span>
+                </div>
+                <p class="text-muted">Отдельный блок с рабочей зоной, двумя кабинетами и лаунжем для команды.</p>
+                <ul class="space-features mb-4">
+                  <li>90 м²</li>
+                  <li>2 переговорные</li>
+                  <li>40 часов встреч</li>
+                  <li>Брендирование</li>
+                </ul>
+                <div class="mt-auto">
+                  <p class="mb-3"><strong class="price">от 169 000 ₽</strong><span class="text-muted"> / месяц</span></p>
+                  <a class="btn btn-primary w-100" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Аренда%20офиса%20M%20для%20компании">Запросить просмотр</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <article class="card space-card h-100">
+              <img src="images/office-3.jpg" class="card-img-top" alt="Большой бизнес-этаж L с просторной зоной для совещаний" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 class="h4 mb-0">Бизнес-этаж L</h3>
+                  <span class="badge text-bg-light">35–45 мест</span>
+                </div>
+                <p class="text-muted">Целый этаж для крупной компании с приватным входом и гибкой планировкой.</p>
+                <ul class="space-features mb-4">
+                  <li>220 м²</li>
+                  <li>4 переговорные</li>
+                  <li>60 часов встреч</li>
+                  <li>Своя ресепшен</li>
+                </ul>
+                <div class="mt-auto">
+                  <p class="mb-3"><strong class="price">от 389 000 ₽</strong><span class="text-muted"> / месяц</span></p>
+                  <a class="btn btn-outline-primary w-100" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Аренда%20бизнес-этажа%20L">Обсудить аренду</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt py-5" aria-labelledby="office-included-title">
+      <div class="container py-4">
+        <div class="row align-items-center g-5">
+          <div class="col-12 col-lg-6">
+            <img src="images/tariff-company.jpg" class="img-fluid rounded-4 shadow" alt="Лаунж-зона корпоративного пространства WorkSpace" loading="lazy">
+          </div>
+          <div class="col-12 col-lg-6">
+            <p class="section-kicker mb-2">Всё уже включено</p>
+            <h2 class="section-title mb-3" id="office-included-title">Вы управляете бизнесом, а не офисом</h2>
+            <p class="text-muted">Фиксированный ежемесячный платёж заменяет десятки договоров и счетов. Добавляйте рабочие места по мере роста команды.</p>
+            <div class="row g-3 mt-2">
+              <div class="col-12 col-sm-6">
+                <h3 class="h6">Сервис и инфраструктура</h3>
+                <ul class="list-unstyled text-muted small">
+                  <li class="mb-2">✔ Мебель и оборудование</li>
+                  <li class="mb-2">✔ Уборка и коммунальные услуги</li>
+                  <li class="mb-2">✔ Резервный интернет-канал</li>
+                  <li class="mb-2">✔ Ресепшен и доставка корреспонденции</li>
+                </ul>
+              </div>
+              <div class="col-12 col-sm-6">
+                <h3 class="h6">Условия для компании</h3>
+                <ul class="list-unstyled text-muted small">
+                  <li class="mb-2">✔ Юридический адрес</li>
+                  <li class="mb-2">✔ Доступ сотрудников 24/7</li>
+                  <li class="mb-2">✔ Часы переговорок и конференц-залов</li>
+                  <li class="mb-2">✔ Персональный аккаунт-менеджер</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container py-3">
+        <div class="business-cta d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-4">
+          <div>
+            <h2 class="section-title mb-2">Покажем офис вашей команде</h2>
+            <p class="mb-0">Расскажите о численности и желаемой дате переезда — подготовим подборку и персональный расчёт.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-2 flex-shrink-0">
+            <a class="btn btn-light btn-lg" href="#inquiryModal" data-inquiry-open data-inquiry-topic="?subject=Подбор%20офиса%20для%20компании">Получить подборку</a>
+            <a class="btn btn-outline-light btn-lg" href="tel:+74951234567">Позвонить</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">WorkSpace</p>
+          <p class="small">Коворкинг и переговорки в центре города. Работаем ежедневно с 8:00 до 22:00, резидентам — 24/7.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">Навигация</p>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="index.html">Главная</a></li>
+            <li class="mb-1"><a href="rooms.html">Аудитории</a></li>
+            <li class="mb-1"><a href="conferences.html">Конференц-залы</a></li>
+            <li class="mb-1"><a href="offices.html">Офисы для бизнеса</a></li>
+            <li class="mb-1"><a href="index.html#tariffs">Тарифы</a></li>
+            <li class="mb-1"><a href="index.html#faq">Частые вопросы</a></li>
+            <li class="mb-1"><a href="profile.html">Профиль</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">Контакты</p>
+          <ul class="list-unstyled small">
+            <li class="mb-1">ул. Примерная, 12, 3 этаж</li>
+            <li class="mb-1"><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li class="mb-1"><a href="#inquiryModal" data-inquiry-open data-inquiry-topic="">hello@workspace.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <p class="small mb-0">© <span id="current-year">2026</span> WorkSpace. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" aria-live="polite"></div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/inquiry.js"></script>
+</body>
+</html>

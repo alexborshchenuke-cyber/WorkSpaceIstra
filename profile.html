@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Профиль клиента WorkSpace: вход и регистрация, мои бронирования переговорок, настройки аккаунта.">
+  <title>Профиль — WorkSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header>
+    <nav class="navbar navbar-expand-lg bg-white fixed-top" aria-label="Основная навигация">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Work<span class="text-primary">Space</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="rooms.html">Аудитории</a></li>
+            <li class="nav-item"><a class="nav-link" href="conferences.html">Конференц-залы</a></li>
+            <li class="nav-item"><a class="nav-link" href="offices.html">Офисы</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#tariffs">Тарифы</a></li>
+            <li class="nav-item ms-lg-2">
+              <a class="btn btn-outline-primary" href="profile.html" id="nav-profile-link">Профиль</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="py-5">
+      <div class="container py-3">
+
+        <!-- Блок авторизации: показывается, если пользователь не вошёл -->
+        <div id="auth-block" class="col-12 col-lg-6 mx-auto d-none">
+          <h1 class="section-title text-center mb-2">Личный кабинет</h1>
+          <p class="section-subtitle text-center mx-auto mb-4">Войдите или зарегистрируйтесь, чтобы управлять бронированиями.</p>
+
+          <div class="alert alert-warning small" role="note">
+            Учебный проект: аккаунты хранятся только в вашем браузере (localStorage), пароль не защищён.
+            Не используйте настоящий пароль.
+          </div>
+
+          <ul class="nav nav-pills justify-content-center mb-4" id="auth-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="tab-login" data-bs-toggle="pill" data-bs-target="#pane-login"
+                      type="button" role="tab" aria-controls="pane-login" aria-selected="true">Вход</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab-register" data-bs-toggle="pill" data-bs-target="#pane-register"
+                      type="button" role="tab" aria-controls="pane-register" aria-selected="false">Регистрация</button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <!-- Вход -->
+            <div class="tab-pane fade show active" id="pane-login" role="tabpanel" aria-labelledby="tab-login">
+              <form id="login-form" novalidate>
+                <div class="mb-3">
+                  <label class="form-label" for="login-email">Email</label>
+                  <input type="email" class="form-control" id="login-email" autocomplete="email" required>
+                  <div class="invalid-feedback">Введите корректный email.</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="login-password">Пароль</label>
+                  <input type="password" class="form-control" id="login-password" minlength="4" autocomplete="current-password" required>
+                  <div class="invalid-feedback">Пароль — минимум 4 символа.</div>
+                </div>
+                <div class="alert alert-danger d-none" role="alert" id="login-error"></div>
+                <button type="submit" class="btn btn-primary w-100">Войти</button>
+              </form>
+            </div>
+
+            <!-- Регистрация -->
+            <div class="tab-pane fade" id="pane-register" role="tabpanel" aria-labelledby="tab-register">
+              <form id="register-form" novalidate>
+                <div class="mb-3">
+                  <label class="form-label" for="register-name">Имя</label>
+                  <input type="text" class="form-control" id="register-name" minlength="2" autocomplete="name" required>
+                  <div class="invalid-feedback">Введите имя (минимум 2 символа).</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="register-email">Email</label>
+                  <input type="email" class="form-control" id="register-email" autocomplete="email" required>
+                  <div class="invalid-feedback">Введите корректный email.</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="register-phone">Телефон</label>
+                  <div class="input-group">
+                    <span class="input-group-text">+7</span>
+                    <input type="tel" class="form-control" id="register-phone" placeholder="(999) 123-45-67"
+                           pattern="[\d\s()\-]{10,16}" autocomplete="tel" required>
+                    <div class="invalid-feedback">Введите телефон: 10 цифр.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="register-password">Пароль</label>
+                  <input type="password" class="form-control" id="register-password" minlength="4" autocomplete="new-password" required>
+                  <div class="invalid-feedback">Пароль — минимум 4 символа.</div>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="register-agree" required>
+                  <label class="form-check-label" for="register-agree">Согласен с условиями использования</label>
+                  <div class="invalid-feedback">Нужно согласие, чтобы продолжить.</div>
+                </div>
+                <div class="alert alert-danger d-none" role="alert" id="register-error"></div>
+                <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Блок профиля: показывается после входа -->
+        <div id="profile-block" class="profile-dashboard d-none">
+          <div class="profile-heading d-flex flex-wrap justify-content-between align-items-start gap-3">
+            <div>
+              <p class="section-kicker mb-2">Личный кабинет</p>
+              <h1 class="section-title mb-2">Настройки аккаунта</h1>
+              <p class="profile-heading__subtitle mb-0">Личные данные и ваши бронирования — в одном месте.</p>
+            </div>
+            <button class="btn profile-logout-btn" id="logout-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M10 17l5-5-5-5M15 12H3M15 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/>
+              </svg>
+              Выйти
+            </button>
+          </div>
+
+          <div class="row g-4 align-items-start">
+            <div class="col-12 col-xl-4">
+              <aside class="profile-summary" aria-label="Сведения об аккаунте">
+                <div class="profile-summary__identity">
+                  <span class="avatar-circle profile-avatar" id="profile-avatar" aria-hidden="true">?</span>
+                  <h2 class="h4 mb-2" id="profile-name-view">—</h2>
+                  <p class="profile-summary__email mb-0" id="profile-email-view">—</p>
+                </div>
+                <div class="profile-summary__contact">
+                  <span>Номер телефона</span>
+                  <strong id="profile-phone-view">—</strong>
+                </div>
+                <nav class="profile-nav" aria-label="Разделы личного кабинета">
+                  <a class="profile-nav__link active" href="#account-settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>
+                    </svg>
+                    Настройки аккаунта
+                  </a>
+                  <a class="profile-nav__link" href="#my-bookings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/>
+                    </svg>
+                    Мои бронирования
+                  </a>
+                </nav>
+              </aside>
+            </div>
+
+            <div class="col-12 col-xl-8">
+              <section class="profile-panel" id="account-settings" aria-labelledby="account-settings-title">
+                <div class="profile-panel__header">
+                  <div>
+                    <h2 class="h4 mb-1" id="account-settings-title">Личные данные</h2>
+                    <p class="mb-0">Эти данные используются при оформлении бронирования.</p>
+                  </div>
+                  <span class="profile-panel__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                      <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21h-4v-.08A1.7 1.7 0 0 0 9 19.37a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.63 15 1.7 1.7 0 0 0 3.08 14H3v-4h.08A1.7 1.7 0 0 0 4.63 9a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.63 1.7 1.7 0 0 0 10 3.08V3h4v.08A1.7 1.7 0 0 0 15 4.63a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.37 9 1.7 1.7 0 0 0 20.92 10H21v4h-.08A1.7 1.7 0 0 0 19.4 15Z"/>
+                    </svg>
+                  </span>
+                </div>
+                <form id="profile-form" class="profile-form" novalidate>
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="profile-name">Имя</label>
+                      <input type="text" class="form-control" id="profile-name" minlength="2" autocomplete="name" required>
+                      <div class="invalid-feedback">Введите имя (минимум 2 символа).</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="profile-email">Email</label>
+                      <input type="email" class="form-control" id="profile-email" autocomplete="email" required>
+                      <div class="invalid-feedback">Введите корректный email.</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="profile-phone">Телефон</label>
+                      <div class="input-group">
+                        <span class="input-group-text">+7</span>
+                        <input type="tel" class="form-control" id="profile-phone" pattern="[\d\s()\-]{10,16}" autocomplete="tel" required>
+                        <div class="invalid-feedback">Введите телефон: 10 цифр.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="profile-form__footer">
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                  </div>
+                </form>
+              </section>
+
+              <section class="profile-panel" id="my-bookings" aria-labelledby="bookings-title">
+                <div class="profile-panel__header profile-panel__header--bookings">
+                  <div>
+                    <h2 class="h4 mb-1" id="bookings-title">Мои бронирования</h2>
+                    <p class="mb-0">История и предстоящие посещения WorkSpace.</p>
+                  </div>
+                  <span class="profile-count" id="bookings-count">0</span>
+                </div>
+                <div id="bookings-list" aria-live="polite"></div>
+                <div class="profile-empty text-center d-none" id="bookings-empty">
+                  <span class="profile-empty__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18M8 15h2M14 15h2"/>
+                    </svg>
+                  </span>
+                  <h3 class="h5">Здесь появятся ваши бронирования</h3>
+                  <p>Выберите подходящую переговорку и удобное время.</p>
+                  <a class="btn btn-primary" href="rooms.html">Выбрать переговорку</a>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="modal fade" id="cancel-booking-modal" tabindex="-1" aria-labelledby="cancel-booking-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content profile-modal">
+                <div class="modal-header">
+                  <h2 class="modal-title h5" id="cancel-booking-title">Отменить бронирование?</h2>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="profile-modal__booking" id="cancel-booking-name"></p>
+                  <p class="text-muted mb-0" id="cancel-booking-details"></p>
+                  <p class="small text-muted mt-3 mb-0">Это действие нельзя отменить.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Оставить бронь</button>
+                  <button type="button" class="btn btn-danger" id="confirm-cancel-booking">Да, отменить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">WorkSpace</p>
+          <p class="small">Коворкинг и переговорки в центре города. Работаем ежедневно с 8:00 до 22:00, резидентам — 24/7.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">Навигация</p>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="index.html">Главная</a></li>
+            <li class="mb-1"><a href="rooms.html">Аудитории</a></li>
+            <li class="mb-1"><a href="conferences.html">Конференц-залы</a></li>
+            <li class="mb-1"><a href="offices.html">Офисы для бизнеса</a></li>
+            <li class="mb-1"><a href="index.html#tariffs">Тарифы</a></li>
+            <li class="mb-1"><a href="index.html#faq">Частые вопросы</a></li>
+            <li class="mb-1"><a href="profile.html">Профиль</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="footer-heading fw-bold">Контакты</p>
+          <ul class="list-unstyled small">
+            <li class="mb-1">ул. Примерная, 12, 3 этаж</li>
+            <li class="mb-1"><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li class="mb-1"><a href="#inquiryModal" data-inquiry-open data-inquiry-topic="">hello@workspace.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <p class="small mb-0">© <span id="current-year">2026</span> WorkSpace. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" aria-live="polite"></div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/inquiry.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
