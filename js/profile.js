@@ -1,4 +1,4 @@
-/* Профиль клиента: регистрация, вход, редактирование данных, мои бронирования */
+/* Профиль клиента: регистрация, вход, редактирование данных, бронирования и избранное */
 
 function validateForm(form) {
   form.classList.add("was-validated");
@@ -31,6 +31,7 @@ function renderProfilePage() {
   document.getElementById("profile-phone").value = user.phone;
 
   renderBookings(user);
+  renderFavorites(user);
 }
 
 /* --- Список бронирований пользователя --- */
@@ -53,6 +54,9 @@ function renderBookings(user) {
     const date = new Date(`${b.date}T00:00:00`);
     const day = date.toLocaleDateString("ru-RU", { day: "2-digit" });
     const month = date.toLocaleDateString("ru-RU", { month: "short" }).replace(".", "");
+    const services = Array.isArray(b.services) && b.services.length
+      ? `<span>Услуги: ${b.services.map((service) => service.name).join(", ")}</span>`
+      : "";
     return `
       <article class="booking-item${isPast ? " booking-item--past" : ""}">
         <div class="booking-date" aria-hidden="true">
@@ -67,6 +71,7 @@ function renderBookings(user) {
           <p class="booking-item__meta">
             <span>${formatDateRu(b.date)}</span>
             <span>${b.time} · ${b.duration} ч</span>
+            ${services}
           </p>
         </div>
         <div class="booking-item__aside">
@@ -77,8 +82,43 @@ function renderBookings(user) {
   }).join("");
 }
 
+/* --- Избранные переговорки пользователя --- */
+function renderFavorites(user) {
+  const list = document.getElementById("favorites-list");
+  const empty = document.getElementById("favorites-empty");
+  const counter = document.getElementById("favorites-count");
+  const rooms = getFavorites(user).map((id) => ROOMS.find((room) => room.id === id)).filter(Boolean);
+
+  counter.textContent = String(rooms.length);
+  empty.classList.toggle("d-none", rooms.length > 0);
+  list.innerHTML = rooms.map((room) => `
+    <article class="favorite-item">
+      <img class="favorite-item__image" src="${room.image}" alt="${room.alt}">
+      <div>
+        <h3 class="favorite-item__title"><a href="room.html?id=${room.id}">${room.name}</a></h3>
+        <p class="favorite-item__meta">${room.area} м² · до ${room.capacity} человек · ${formatPrice(room.price)}/час</p>
+      </div>
+      ${favoriteButtonHtml(room)}
+    </article>`).join("");
+}
+
+function migrateUserRoomData(oldEmail, newEmail) {
+  [WS_KEYS.favorites, WS_KEYS.recentRooms].forEach((key) => {
+    const saved = wsRead(key, {});
+    if (!Object.prototype.hasOwnProperty.call(saved, oldEmail)) return;
+    saved[newEmail] = saved[oldEmail];
+    delete saved[oldEmail];
+    wsWrite(key, saved);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderProfilePage();
+
+  document.addEventListener("ws:favorites-changed", () => {
+    const user = getCurrentUser();
+    if (user) renderFavorites(user);
+  });
 
   /* --- Вход --- */
   const loginForm = document.getElementById("login-form");
@@ -165,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
     users[index].email = newEmail;
     wsWrite(WS_KEYS.users, users);
     wsWrite(WS_KEYS.session, newEmail);
+    if (newEmail !== user.email) migrateUserRoomData(user.email, newEmail);
 
     renderProfilePage();
     showToast("Данные профиля обновлены.");

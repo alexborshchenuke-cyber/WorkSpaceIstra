@@ -90,6 +90,22 @@
                 </select>
                 <div class="invalid-feedback">Выберите длительность бронирования.</div>
               </div>
+              <fieldset class="col-12">
+                <legend class="form-label">Дополнительные услуги</legend>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="service-coffee" value="500" data-booking-service data-name="Кофе-брейк">
+                  <label class="form-check-label d-flex justify-content-between gap-3" for="service-coffee"><span>Кофе-брейк</span><span>500 ₽</span></label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="service-projector" value="700" data-booking-service data-name="Дополнительный проектор">
+                  <label class="form-check-label d-flex justify-content-between gap-3" for="service-projector"><span>Дополнительный проектор</span><span>700 ₽</span></label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="service-serving" value="1000" data-booking-service data-name="Сервировка стола">
+                  <label class="form-check-label d-flex justify-content-between gap-3" for="service-serving"><span>Сервировка стола</span><span>1 000 ₽</span></label>
+                </div>
+                <p class="text-muted small mb-0 mt-2">Стоимость услуг добавляется к бронированию один раз.</p>
+              </fieldset>
               <div class="col-12">
                 <label class="form-label" for="booking-name">Ваше имя</label>
                 <input type="text" class="form-control" id="booking-name" minlength="2" autocomplete="name" required>
@@ -106,7 +122,10 @@
               </div>
             </div>
 
-            <p class="mt-3 mb-0">Итого: <strong class="price" id="booking-total">—</strong></p>
+            <div class="booking-total mt-3">
+              <p class="mb-1">Итого: <strong class="price" id="booking-total">—</strong></p>
+              <p class="text-muted small mb-0" id="booking-total-details">Выберите длительность, чтобы рассчитать стоимость.</p>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>

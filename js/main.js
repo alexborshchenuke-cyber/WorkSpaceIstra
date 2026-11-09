@@ -4,7 +4,9 @@
 const WS_KEYS = {
   users: "ws_users",
   session: "ws_session",
-  bookings: "ws_bookings"
+  bookings: "ws_bookings",
+  favorites: "ws_favorites",
+  recentRooms: "ws_recent_rooms"
 };
 
 function wsRead(key, fallback) {
@@ -29,6 +31,36 @@ function getCurrentUser() {
 
 function getBookings() {
   return wsRead(WS_KEYS.bookings, []);
+}
+
+function getUserRoomIds(key, user = getCurrentUser()) {
+  if (!user) return [];
+  const saved = wsRead(key, {});
+  const ids = Array.isArray(saved[user.email]) ? saved[user.email] : [];
+  return ids.filter((id, index) => Number.isInteger(id) && ids.indexOf(id) === index && ROOMS.some((room) => room.id === id));
+}
+
+function saveUserRoomIds(key, ids, user = getCurrentUser()) {
+  if (!user) return;
+  const saved = wsRead(key, {});
+  saved[user.email] = ids;
+  wsWrite(key, saved);
+}
+
+function getFavorites(user = getCurrentUser()) {
+  return getUserRoomIds(WS_KEYS.favorites, user);
+}
+
+function getRecentRooms(user = getCurrentUser()) {
+  return getUserRoomIds(WS_KEYS.recentRooms, user);
+}
+
+function recordRoomView(roomId) {
+  const user = getCurrentUser();
+  if (!user) return;
+  const recent = getRecentRooms(user).filter((id) => id !== roomId);
+  recent.unshift(roomId);
+  saveUserRoomIds(WS_KEYS.recentRooms, recent.slice(0, 4), user);
 }
 
 function formatPrice(value) {
@@ -61,12 +93,42 @@ function showToast(message, variant = "success") {
   instance.show();
 }
 
+/* --- Избранные переговорки --- */
+function favoriteButtonHtml(room) {
+  const active = getFavorites().includes(room.id);
+  const label = active ? `Удалить «${room.name}» из избранного` : `Добавить «${room.name}» в избранное`;
+  return `
+    <button type="button" class="favorite-btn${active ? " is-active" : ""}" data-favorite-room="${room.id}"
+            aria-pressed="${active}" aria-label="${label}" title="${label}">
+      <svg viewBox="0 0 24 24" fill="${active ? "currentColor" : "none"}" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+      </svg>
+    </button>`;
+}
+
+function updateFavoriteButtons(roomId) {
+  const favorites = getFavorites();
+  document.querySelectorAll(`[data-favorite-room="${roomId}"]`).forEach((button) => {
+    const room = ROOMS.find((item) => item.id === roomId);
+    const active = favorites.includes(roomId);
+    const label = active ? `Удалить «${room.name}» из избранного` : `Добавить «${room.name}» в избранное`;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-label", label);
+    button.title = label;
+    button.querySelector("svg").setAttribute("fill", active ? "currentColor" : "none");
+  });
+}
+
 /* --- Карточка переговорки (используется на лендинге и в каталоге) --- */
-function roomCardHtml(room) {
+function roomCardHtml(room, options = {}) {
   return `
     <div class="col-12 col-md-6 col-lg-4">
       <article class="card h-100">
-        <img src="${room.image}" class="card-img-top" alt="${room.alt}">
+        <div class="card-media position-relative">
+          <img src="${room.image}" class="card-img-top" alt="${room.alt}">
+          ${favoriteButtonHtml(room)}
+        </div>
         <div class="card-body d-flex flex-column">
           <h3 class="card-title h5"><a href="room.html?id=${room.id}">${room.name}</a></h3>
           <p class="card-text text-muted small flex-grow-1">${room.short}</p>
@@ -74,12 +136,11 @@ function roomCardHtml(room) {
             <span class="badge text-bg-light">${room.area} м²</span>
             <span class="badge text-bg-light">до ${room.capacity} чел.</span>
           </p>
-          <div class="d-flex justify-content-between align-items-center gap-2">
-            <span class="price">${formatPrice(room.price)}<small class="text-muted fw-normal">/час</small></span>
-            <div class="d-flex gap-2">
-              <a class="btn btn-outline-primary btn-sm" href="room.html?id=${room.id}">Подробнее</a>
-              <button type="button" class="btn btn-primary btn-sm" data-book-room="${room.id}">Забронировать</button>
-            </div>
+          <p class="price mb-3">${formatPrice(room.price)}<small class="text-muted fw-normal">/час</small></p>
+          <div class="d-flex flex-wrap gap-2 mt-auto">
+            ${options.compare ? `<button type="button" class="btn btn-outline-secondary btn-sm" data-compare-room="${room.id}" aria-pressed="false">Сравнить</button>` : ""}
+            <a class="btn btn-outline-primary btn-sm" href="room.html?id=${room.id}">Подробнее</a>
+            <button type="button" class="btn btn-primary btn-sm" data-book-room="${room.id}">Забронировать</button>
           </div>
         </div>
       </article>
@@ -137,6 +198,28 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
   });
 
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-favorite-room]");
+    if (!button) return;
+
+    const user = getCurrentUser();
+    if (!user) {
+      showToast("Войдите или зарегистрируйтесь, чтобы сохранять избранные переговорки.", "warning");
+      return;
+    }
+
+    const roomId = Number(button.dataset.favoriteRoom);
+    const favorites = getFavorites(user);
+    const active = favorites.includes(roomId);
+    const updated = active ? favorites.filter((id) => id !== roomId) : [...favorites, roomId];
+    saveUserRoomIds(WS_KEYS.favorites, updated, user);
+    updateFavoriteButtons(roomId);
+    document.dispatchEvent(new CustomEvent("ws:favorites-changed"));
+
+    const room = ROOMS.find((item) => item.id === roomId);
+    showToast(active ? `«${room.name}» удалена из избранного.` : `«${room.name}» добавлена в избранное.`);
+  });
+
   // Если пользователь вошёл — показываем имя в кнопке профиля
   const profileLink = document.getElementById("nav-profile-link");
   const user = getCurrentUser();
@@ -149,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Лендинг: популярные переговорки (первые 3)
   const popular = document.getElementById("popular-rooms");
   if (popular) {
-    popular.innerHTML = ROOMS.slice(0, 3).map(roomCardHtml).join("");
+    popular.innerHTML = ROOMS.slice(0, 3).map((room) => roomCardHtml(room)).join("");
   }
 
   // Лендинг: тарифы
